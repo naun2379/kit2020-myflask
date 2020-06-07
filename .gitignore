@@ -3,6 +3,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,code,python,flask
 
 myenv/
+save.txt
+*.db
 ### Code ###
 .vscode/*
 !.vscode/settings.json
