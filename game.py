@@ -19,13 +19,13 @@ def save_game(filename,charact):
         f.white("%s:%s\n" % (key,charact[key]))
     f.close()
 
-print("길을 가다가 퉁퉁이를 만났습니다.")
-while(True):
-    try:
-        print("1 싸운다 2. 도망간다")
-        num = int(intput("선택"))
-        break
-    except:
-        print("숫자만 입력하세요")
+#print("길을 가다가 퉁퉁이를 만났습니다.")
+#while(True):
+    #try:
+        #print("1 싸운다 2. 도망간다")
+        #num = int(intput("선택"))
+        #break
+   # except:
+        #print("숫자만 입력하세요")
 
-game(num,character)
+#game(num,character)

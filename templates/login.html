@@ -1,6 +1,9 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "layout.html" %}
+{% block title %}메인 페이지{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
 
 <h2>KIT 로그인</h2>
 
@@ -10,7 +13,6 @@
     <label for="lname">패스워드:</label><br>
     <input type="password" id="lname" name="pw"><br><br>
     <input type="submit" value="확인">
-</form>
-
-</body>
-</html>
+</form>   
+    
+{% endblock %}
