@@ -1,31 +1,25 @@
-import json
-def set_charact(name):
-    character = {
-        "name": name,
-        "level" : 1,
-        "hp":100,
-        "items":["비행기", "ㅁㅁㅁㅁ","ㄴㄴㄴㄴ"],
-        "skill":["ㅂㅂㅂ","ㅈㅈㅈ","ㄷㄷㄷ"]
-    }
-    with open("static/save.txt","w",encoding='utf-8') as f:
-        json.dump(character , f , ensure_ascii = False, indent=4)
-    #print("{0}님 반갑습니다.(hp {1})로 게임시작합니다".format(character["name"],character["hp"]))
-    return character
+import random
+import time
 
-def save_game(filename,charact):
-    f = open(filename,"w" , encoding="utf-8")
-    for key in charact:
-        print("%s:%s" % (key,charact[key]))
-        f.white("%s:%s\n" % (key,charact[key]))
-    f.close()
+w=["cat","dog","fow","monkey","mouse","panda","banana","apple","frog",]
+n=1
+print("타자게임 준비되면 엔터키를 눌려주세요")
+input()
+start=time.time()
 
-#print("길을 가다가 퉁퉁이를 만났습니다.")
-#while(True):
-    #try:
-        #print("1 싸운다 2. 도망간다")
-        #num = int(intput("선택"))
-        #break
-   # except:
-        #print("숫자만 입력하세요")
+q=random.choice(w)
+while n<=5:
+    print("*문제",n)
+    print(q)
+    x=input()
+    if q==x:
+        print("통과입니다")
+        n=n+1
+        q=random.choice(w)
+    else:
+        print("오타입니다")
 
-#game(num,character)
+end = time.time()
+et = end-start
+et=format(et, ".2f")
+print("타자시간 : ", et , "초")

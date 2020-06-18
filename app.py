@@ -23,11 +23,11 @@ def hellovar(name):
 
 @app.route('/gamestart')
 def gamestart():
-    with open("static/save.txt","r",encoding='utf-8') as f:
-        data = f.read()
-        character = json.loads(data)
-        print(character['items'])
-    return "{}이 {}아이템을 사용해서 이겼습니다.".format(character["name"],character["items"][0])
+
+
+
+
+
 
 
 @app.route('/login', methods=['GET','POST'])
