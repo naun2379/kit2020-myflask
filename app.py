@@ -29,21 +29,6 @@ def gamestart():
         print(character['items'])
     return "{}이 {}아이템을 사용해서 이겼습니다.".format(character["name"],character["items"][0])
 
-#@app.route('/input/<int:num>')
-#def input_num(num):
-    #if num == 1:
-        #with open("static/save.txt","r",encoding='utf-8') as f:
-            #data = f.read()
-            #character = json.loads(data)
-            #print(character['items'])
-    #return "{}이 {}아이템을 사용해서 이겼습니다.".format(character["name"],character["items"][0])
-    #elif num == 2:
-        #return "도망갔다"
-    #elif num == 3:
-        #return "퉁퉁이"
-    #else:
-        #return "없어요"
-    #return 'hello, {}!' . format(name)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
