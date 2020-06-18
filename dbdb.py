@@ -52,7 +52,7 @@ def check_id(id):
     try:
         db = dbcon()
         c = db.cursor()
-        setdata = (id,pw)
+        setdata = (id)
         c.execute('SELECT * FROM student WHERE id = ? AND pw = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
