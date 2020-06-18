@@ -1,7 +1,7 @@
-from flask import Flask, request ,redirect  , render_template, url_for , abort, session
+from flask import Flask, request ,redirect, render_template, url_for , abort, session
 app = Flask(__name__)
 
-import game 
+import game
 import json
 
 import dbdb
@@ -56,13 +56,13 @@ def login():
         print (pw,type(pw))
         ret = dbdb.select_user(id,pw)
         print(ret[2])
-        if ret != None: 
+        if ret != None:
             session['user'] = id
             return redirect(url_for('index'))
         else:
             return redirect(url_for('login'))
 
-@app.route('logout')
+@app.route('/logout')
 def logout():
     session.pop('user', None)
     return redirect(url_for('index'))
@@ -109,7 +109,7 @@ def getinfo():
         ret = dbdb.select_all()
         print(ret[3])
         return render_template('getinfo.html',date=ret)
-    
+
     return redirect(url_for('login'))
     #return '번호 : {},이름 : {}',format(student[0],student[1])
 
@@ -143,7 +143,7 @@ def page_not_found(error):
 def img():
     return render_template('image.html')
 
-if __name__ == '__main__':
-    with app.test_request_context():
-        print(url_for('daum'))
-    app.run(debug=True)
+#if __name__ == '__main__':
+    #with app.test_request_context():
+       # print(url_for('daum'))
+    #app.run(debug=True)

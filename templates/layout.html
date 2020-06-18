@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <title>{% block title %}{% endblock %} - 내가 만든 사이트</title>
+    <title>{% block title %}메인페이지{% endblock %} - 내가 만든 사이트</title>
     {% endblock %}
   </head>
   <body>
@@ -29,11 +29,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('getinfo'') }}">학생정보</a>
           </li>
-          {% if 'user' not in session %}
+            {% if 'user' not in session %}
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('join') }}">회원가입</a>
           </li>
-          {% endif %}
+            {% endif %}
         </ul>
     </nav>
     <div class="container-fluid">
