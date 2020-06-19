@@ -21,8 +21,8 @@ def hellovar(name):
     character = game.set_charact(name)
     return render_template('gamestart.html', data=character)
 
-@app.route('/gamestart')
-def gamestart():
+#@app.route('/gamestart')
+#def gamestart():
 
 
 
