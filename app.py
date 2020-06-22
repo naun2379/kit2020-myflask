@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 import game
 import json
-
+import random
 import dbdb
 
 app.secret_key = b'aaa!111/'
@@ -21,10 +21,41 @@ def hellovar(name):
     character = game.set_charact(name)
     return render_template('gamestart.html', data=character)
 
-@app.route('/gamestart')
-def gamestart():
-    return render_template('main.html')
+@app.route('/gamestar')
+def gamestar():
+    return render_template('gamestar.html')
 
+
+w=["cat","dog","fow","monkey","mouse","panda","banana","apple","frog",]
+count = {}
+quest = {}
+
+@app.route('/gamestart', methods=['GET','POST'])
+def gamestart():
+    if request.method == 'GET':
+        count[session["user"]] = 0
+        quest[session["user"]] = random.choice(w)
+        return render_template('gamestart.html', quest=quest[session["user"]])
+    else:
+        answer = request.form['answer']
+        if answer == quest[session["user"]]:
+            count[session["user"]] += 1
+            if count[session["user"]] >=5: #밑에게임승리소스
+                return '''  
+                    <script> alert('오타가없으시네요 메인으로 돌아갑니다');
+                    location.href="/"
+                    </script> 
+                    '''
+
+            else:
+                quest[session["user"]] = random.choice(w)
+                return render_template('gamestart.html', quest=quest[session["user"]])
+        else:
+            return '''
+                    <script> alert('오타입니다!!!!처음부터 다시시작하세요!');
+                    location.href="/gamestar"
+                    </script>
+                    '''
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -56,8 +87,6 @@ def join():
         id = request.form['id']
         pw = request.form['pw']
         name = request.form['name']
-        print (id,type(id))
-        print (pw,type(pw))
         ret = dbdb.check_id(id)
         if ret != None:
             return '''

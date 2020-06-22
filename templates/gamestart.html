@@ -1,11 +1,32 @@
-<!DOCTYPE html>
- <html>
-<body>
-<h2>게임 시작</h2>
-{{data.name}}님 반갑습니다.(hp {{data.hp}})로 게임시작합니다<br>
-길을 가다가 퉁퉁이를 만났습니다.<br>
-<a href={{ url_for('input_num', num=1}}> 1. 싸운다</a><br>
-<a href={{ url_for('input_num', num=2}}> 2. 도망간다</a>
+{% extends "layout.html" %}
+{% block title %}메인 페이지{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %} 
+<script>
+    var time = 5; 
+	var sec = ""; 
+	var x = setInterval(function() {
+		sec = time%60;
+		document.getElementById("demo").innerHTML = sec + "초";
+		time--;		
+		if (time < 0) {
+			clearInterval(x);
+            document.getElementById("demo").innerHTML = "시간초과";
+            document.getElementById("fform").action = "/gamestar";
+            document.getElementById("fform").method = "GET";
+            document.getElementById("fsubmit").value = "다시시작";
+		}
+    }, 1000);
+</script>
+<h2>게임문제 : {{ quest }}</h2>
+<div id="demo"></div>
+<form id = "fform" action="/gamestart" method="POST">
+    <label for="fanswer">정답 </label><br>
+    <input type="text" id="fanswer" name="answer"><br>
+    <input type="submit" id="fsubmit" value="확인"> 
+    </script>  
+</form>   
 
-</body>
- </html>
+{% endblock %}

@@ -6,8 +6,8 @@ def create_table():
     try:
         query = '''
             create table "users" (
-                "id"      varchar(50)
-                "pw"      varchar(50)
+                "id"      varchar(50),
+                "pw"      varchar(50),
                 "name"    varchar(50),
                 PRIMARY KEY("id")
             )
@@ -39,7 +39,7 @@ def select_user(id,pw):
         db = dbcon()
         c = db.cursor()
         setdata = (id,pw)
-        c.execute('SELECT * FROM student WHERE id = ? AND pw = ?', setdata)
+        c.execute('SELECT * FROM users WHERE id = ? AND pw = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
         print('db error:', e)
@@ -53,7 +53,7 @@ def check_id(id):
         db = dbcon()
         c = db.cursor()
         setdata = (id,)
-        c.execute('SELECT * FROM student WHERE id = ? AND pw = ?', setdata)
+        c.execute('SELECT * FROM users WHERE id = ? AND pw = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
         print('db error:', e)
@@ -67,7 +67,7 @@ def insert_data(num,name):
         db = dbcon()
         c = db.cursor()
         setdata = (num,name)
-        c.execute("INSERT INTO student VALUES (? , ?)", setdata)
+        c.execute("INSERT INTO users VALUES (? , ?)", setdata)
         db.commit()
     except Exception as e :
         print('db error:',e)
@@ -79,7 +79,7 @@ def select_all():
     try:
         db = dbcon()
         c = db.cursor()
-        c.execute('SELECT * FROM student')
+        c.execute('SELECT * FROM users')
         ret = c.fetchall()
     except Exception as e:
         print('db error:', e)
@@ -93,7 +93,7 @@ def select_num(num):
         db = dbcon()
         c = db.cursor()
         setdata = (num,)
-        c.execute('SELECT * FROM student WHERE num = ?', setdata)
+        c.execute('SELECT * FROM users WHERE num = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
         print('db error:', e)

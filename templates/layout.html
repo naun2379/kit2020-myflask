@@ -34,7 +34,9 @@
               <a class="nav-link" href="{{ url_for('join') }}">회원가입</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('gamestart') }}">게임</a>
+            {% if 'user' in session %}
+            <a class="nav-link" href="{{ url_for('gamestar') }}">게임</a>
+            {% endif %}
         </li>
             
         </ul>
