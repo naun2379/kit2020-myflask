@@ -53,7 +53,7 @@ def check_id(id):
         db = dbcon()
         c = db.cursor()
         setdata = (id,)
-        c.execute('SELECT * FROM users WHERE id = ? AND pw = ?', setdata)
+        c.execute('SELECT * FROM users WHERE id = ?', setdata)
         ret = c.fetchone()
     except Exception as e:
         print('db error:', e)
