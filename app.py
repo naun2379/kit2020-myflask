@@ -64,39 +64,67 @@ def login():
     else:
         id = request.form['id']
         pw = request.form['pw']
-        print (id,type(id))
-        print (pw,type(pw))
-        ret = dbdb.select_user(id,pw)
-        print(ret[2])
+        ret = dbdb.select_user(id, pw)
         if ret != None:
             session['user'] = id
-            return redirect(url_for('index'))
+            return '''
+                <script> alert('안녕하세요~ {}님');
+                location.href="/"
+                </script>
+                '''.format(ret[2])
         else:
-            return redirect(url_for('login'))
+            return '''
+                <script> alert('아이디 또는 패스워드를 확인 하세요');
+                location.href="/login"
+                </script>
+                '''
 
 @app.route('/logout')
 def logout():
     session.pop('user', None)
     return redirect(url_for('index'))
 
-@app.route('/join', methods=['GET','POST'])
+@app.route('/join', methods=['GET', 'POST'])
 def join():
     if request.method == 'GET':
         return render_template('join.html')
     else:
-        id = request.form['id']
-        pw = request.form['pw']
-        name = request.form['name']
+        id = request.form["id"]
+        pw = request.form["pw"]
+        name = request.form["name"]
+        if id == "":
+            return '''
+                <script>
+                alert('아이디를 입력 해주세요');
+                location.href='/join';
+                </script>
+                '''
+        elif pw == "":
+            return '''
+                <script>
+                alert('비밀번호를 입력 해주세요');
+                location.href='/join';
+                </script>
+                '''
+        elif name == "":
+            return '''
+                <script>
+                alert('이름을 입력 해주세요');
+                location.href='/join';
+                </script>
+                '''
         ret = dbdb.check_id(id)
         if ret != None:
             return '''
-                    <Script>
-                    alert('다른아이디를 사용하세요');
-                    location.href='/join';
-                    <script>
+                <script>
+                alert('다른 아이디를 사용하세요');
+                location.href='/join';
+                </script>
                 '''
-        dbdb.insert_user(id,pw,name)
+        # id와 pw가 db 값이랑 비교 해서 맞으면 맞다 틀리면 틀리다
+        dbdb.insert_user(id, pw, name)
         return redirect(url_for('login'))
+
 
 @app.route('/form')
 def form():
@@ -117,11 +145,12 @@ def method():
 def getinfo():
     if 'user' in session:
         ret = dbdb.select_all()
-        print(ret[3])
-        return render_template('getinfo.html',date=ret)
-
-    return redirect(url_for('login'))
-    #return '번호 : {},이름 : {}',format(student[0],student[1])
+        return render_template('getinfo.html', data=ret)
+    return '''
+        <script> alert('로그인 후에 이용 가능합니다');
+        location.href="/login"
+        </script>
+        '''
 
 @app.route('/naver')
 def naver():

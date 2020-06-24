@@ -105,8 +105,8 @@ def select_num(num):
 
 #create_table()
 #insert_user('gnseh','1234','김도훈')
-#insert_data('2020123456','디비')
+#insert_data('20171070','디비')
 #ret = select_all()
-#ret = select_num(2020123456)
-#ret = select_user('gnseh','1234')
+#ret = select_num(20171070)
+#ret = select_user('abc','1234')
 #print(ret)
