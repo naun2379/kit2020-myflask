@@ -182,7 +182,7 @@ def page_not_found(error):
 def img():
     return render_template('image.html')
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
     #with app.test_request_context():
        # print(url_for('daum'))
-    #app.run(debug=True)
+    app.run(debug=True)
